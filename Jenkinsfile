@@ -1,16 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Update Dependencies') {
+        stage('Build') {
             steps {
-                sh 'sudo npm install -g npm@latest'  // Update npm to the latest version
-                sh 'npm outdated'                    // List outdated packages
-                sh 'npm update'                      // Update packages to the latest version
-            }
-        }
-        stage('Build') { 
-            steps {
-                sh 'npm install' 
+                sh 'npm install'
             }
         }
         stage('Test') {
@@ -18,11 +11,11 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Deliver') {
+        stage('Deliver') { 
             steps {
-                sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                sh './jenkins/scripts/deliver.sh' 
+                input message: 'Finished using the web site? (Click "Proceed" to continue)' 
+                sh './jenkins/scripts/kill.sh' 
             }
         }
     }
