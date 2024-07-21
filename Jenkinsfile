@@ -3,9 +3,9 @@ pipeline {
     stages {
         stage('Update Dependencies') {
             steps {
-                sh 'npm install -g npm@latest'  // Update npm to the latest version
-                sh 'npm outdated'               // List outdated packages
-                sh 'npm update'                 // Update packages to the latest version
+                sh 'sudo npm install -g npm@latest'  // Update npm to the latest version
+                sh 'npm outdated'                    // List outdated packages
+                sh 'npm update'                      // Update packages to the latest version
             }
         }
         stage('Build') { 
